@@ -10,19 +10,57 @@
  * console.log(onlyEven); //  4
 */
 
-var evenOccurrence = function(arr) {
-  // Your code here.
-  /* START SOLUTION */
-  var hash = {};
-  var i;
-  // hash of not-even characters
-  for (i = 0; i < arr.length; i++) {
-    hash[arr[i]] = !hash[arr[i]];
-  }
-  // return the first even occurrence
-  for (i = 0; i < arr.length; i++) {
-    if (!hash[arr[i]]) { return arr[i]; }
-  }
-  return null;
-  /* END SOLUTION */
-};
+// const evenOccurrence = (arr) => {
+//   // initialize counter object
+//   let counterObj = {};
+
+//   // iterate through array
+//   arr.forEach(value => {
+//     if (counterObj[value]) {
+//       // if key of value exists, incremement
+//       counterObj[value]++;
+//     } else {
+//       // else initialize to one
+//       counterObj[value] = 1;
+//     }
+//   });
+
+//   // iterate through array
+//   for (let i = 0; i < arr.length; i++) {
+//     // if key's value is even in counter
+//     if (counterObj[arr[i]] % 2 === 0) {
+//       console.log(arr[i]);
+//       return arr[i];
+//     }
+//   }
+//   return null;
+// };
+
+//******** Solution using binaries instead ********//
+
+// const evenOccurrence = (arr) => {
+//   // initialize counter object
+//   let counterObj = {};
+
+//   // iterate through array
+//   arr.forEach(value => {
+//     if (counterObj[value]) {
+//       // if key of value exists, incremement
+//       counterObj[value] = false;
+//     } else {
+//       // else initialize to one
+//       counterObj[value] = !counterObj[value];
+//     }
+//   });
+
+//   // iterate through array
+//   for (let i = 0; i < arr.length; i++) {
+//     // if key's value is even in counter
+//     if (counterObj[arr[i]] % 2 === 0) {
+//       console.log(arr[i]);
+//       return arr[i];
+//     }
+//   }
+//   return null;
+// };
+
