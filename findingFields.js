@@ -60,4 +60,3 @@ const countFields = (grid) => {
   // console.log(fieldCounter);
   return fieldCounter;
 };
-
