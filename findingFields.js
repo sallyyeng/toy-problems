@@ -1,4 +1,5 @@
 /*** countFields will return the number of continuously marked squares in a given grid ***/
+// Field = any set of continuously marked squares in grid
 // Input:
 // let sampleGrid = ['NNNNY', 'NYNNY', 'YYYNN', 'NYNNY', 'NNNYY'];
 // sampleGrid = sampleGrid.map(s => s.split(''));
@@ -8,7 +9,7 @@ const countFields = (grid) => {
   // initialize fieldCounter
   let fieldCounter = 0;
 
-  // initialize outOfBounds helper
+  // helper: initialize outOfBounds helper
   const isOutOfBounds = (r, c) => {
     let gridSize = grid.length - 1;
 
@@ -19,7 +20,7 @@ const countFields = (grid) => {
     return false;
   };
 
-  // initialize DFS recursive helper to mark all attached field squares as identified
+  // helper: initialize DFS recursive helper to mark all attached field squares as identified
   const markAttachedFields = (r, c) => {
     // if square is out of bounds or already marked, return
     if (isOutOfBounds(r, c) || grid[r][c] === 'N') {
@@ -41,6 +42,7 @@ const countFields = (grid) => {
     for (let c = 0; c < grid[r].length; c++) {
       // if you identify a field
       if (grid[r][c] === 'Y') {
+
         // increment field counter
         fieldCounter ++;
 
@@ -51,11 +53,11 @@ const countFields = (grid) => {
     }
   }
 
-  grid.forEach(array => {
-    console.log(JSON.stringify(array));
-  });
+  // grid.forEach(array => {
+  //   console.log(JSON.stringify(array));
+  // });
 
-  console.log(fieldCounter);
+  // console.log(fieldCounter);
   return fieldCounter;
 };
 
