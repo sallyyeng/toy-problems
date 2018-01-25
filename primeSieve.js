@@ -5,12 +5,42 @@
  * saucy, check out the Sieve of Atkin.)
  */
 
-var primeSieve = function (start, end) {
+const primeSieve = function (start, end) {
+  // create range between 2 and end
+  let updatedRange = range(2, end);
+  let currPrimeIndex = 0;
 
+  // while currPrimeIndex < sqrt(end)
+  while (updatedRange[currPrimeIndex] <= Math.sqrt(end)) {
+    let multiple = updatedRange[currPrimeIndex];
+
+    // iterate through array where i starts at first multiple of value at currPrimeIndex
+    for (let i = currPrimeIndex + multiple; i <= updatedRange.length; i += multiple) {
+
+      // switch each multiple to null
+      updatedRange[i] = null;
+    }
+
+    // increment currPrimeIndex
+    currPrimeIndex ++;
+
+    // while currPrimeIndex is null and less than end, increment currPrimeIndex
+    while (!multiple && multiple < Math.sqrt(end)) {
+      let multiple = updatedRange[currPrimeIndex];
+      currPrimeIndex++;
+    }
+  }
+
+  // filter for values greater than start
+  return updatedRange.filter(value => { return value && value >= start; });
 };
 
-/* START SOLUTION */
-var range = function (start, end) {
+const range = function (start, end) {
+  let range = [];
+  for (let i = start; i <= end; i++) {
+    range.push(i);
+  }
 
+  return range;
 };
-/* END SOLUTION */
+
