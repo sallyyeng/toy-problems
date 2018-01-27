@@ -19,8 +19,6 @@ const primeSieve = function (start, end) {
     }
     currPrimeIndex ++;
   }
-  let test = updatedRange.filter(value => { return value && value >= start; });
-  console.log(test);
   // filter for values greater than start
   return updatedRange.filter(value => { return value && value >= start; });
 };
