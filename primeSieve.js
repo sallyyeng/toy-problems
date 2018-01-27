@@ -6,31 +6,21 @@
  */
 
 const primeSieve = function (start, end) {
-  // create range between 2 and end
   let updatedRange = range(2, end);
   let currPrimeIndex = 0;
 
-  // while currPrimeIndex < sqrt(end)
   while (updatedRange[currPrimeIndex] <= Math.sqrt(end)) {
+    // mark all multiples not prime
     let multiple = updatedRange[currPrimeIndex];
-
-    // iterate through array where i starts at first multiple of value at currPrimeIndex
-    for (let i = currPrimeIndex + multiple; i <= updatedRange.length; i += multiple) {
-
-      // switch each multiple to null
-      updatedRange[i] = null;
+    if (multiple) {
+      for (let i = currPrimeIndex + multiple; i <= updatedRange.length; i += multiple) {
+        updatedRange[i] = null;
+      }
     }
-
-    // increment currPrimeIndex
     currPrimeIndex ++;
-
-    // while currPrimeIndex is null and less than end, increment currPrimeIndex
-    while (!multiple && multiple < Math.sqrt(end)) {
-      let multiple = updatedRange[currPrimeIndex];
-      currPrimeIndex++;
-    }
   }
-
+  let test = updatedRange.filter(value => { return value && value >= start; });
+  console.log(test);
   // filter for values greater than start
   return updatedRange.filter(value => { return value && value >= start; });
 };
@@ -43,4 +33,3 @@ const range = function (start, end) {
 
   return range;
 };
-
