@@ -92,7 +92,7 @@ Number.prototype.toEnglish = function () {
   let currPlace = 1000000000000000000;
 
   // while place is greater than or equal to one
-  while ( currPlace >= 1) {
+  while ( currPlace >= 1 ) {
     // grab 539 from 539888888
     let hundred = Math.floor(value / currPlace);
 
