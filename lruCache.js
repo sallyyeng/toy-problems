@@ -1,60 +1,56 @@
-var LRUCache = function (limit) {
+var LRUCache = function(limit) {
+  this._size = 0;
   this._limit = limit;
-  this._size = null;
   this._cache = new List();
   this._map = {};
 };
 
 var LRUCacheItem = function (val) {
-  return [val, null]
-};
-
-LRUCache.prototype.size = function () {
-  return this._size;
+  return [val, null];
 };
 
 LRUCache.prototype.get = function (key) {
+  // if key doesn't exist, return null
   if (!this._map[key]) {
     return null;
   } else {
+  // if key exists, move the node to the front and return value
     var mappedValue = this._map[key][0];
     var mappedNode = this._map[key][1];
+
+
     this._cache.moveToFront(mappedNode);
-    return mappedValue
+    return mappedValue;
   }
 };
 
 LRUCache.prototype.set = function (key, val) {
-
-  // if key already exists
+  // if key already exists,
   if (this._map[key]) {
     var mappedValue = this._map[key][0];
     var mappedNode = this._map[key][1];
 
-    // replace value
+    // replace value and move node to the front
     mappedValue = val;
-    // move node to the front
     this._cache.moveToFront(mappedNode);
-
-  } else { // if it doesn't
-
-    // create cacheItem with val
-    this._map[key] = new LRUCacheItem(val);
+  } else {
+    // create new cacheItem inside map and map it to the new list node
+    this._map[key] = LRUCacheItem(val);
+    this._map[key][1] = this._cache.unshift(val);
 
     // if size is at limit
-    if (this._size === this._limit) {
-      // pop off the tail, add a new head and link to linkedList
-      let deleted = this._cache.pop()
-      console.log('deleted is: ', deleted)
+    if (this._size >= this._limit) {
+      // pop off the tail and delete corresponding key from map
+      let deleted = this._cache.pop();
       delete this._map[deleted];
     } else {
+      // if size isn’t at limit, increment size
       this._size++;
     }
-    this._map[key][1] = this._cache.unshift(val);
   }
-
 };
 
+/******************** Start Helper Functions ********************/
 
 var List = function () {
   this.head = null;
