@@ -1,13 +1,3 @@
-/**
-
-Implement a `map` method on this Tree class
-Does NOT modify original tree
-
-Implement `mapInPlace`, which DOES modify
-the original tree instead of generating a new one.
-
-*/
-
 let Tree = function(value) {
   this.value = value;
   this.children = [];

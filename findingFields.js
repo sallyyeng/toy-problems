@@ -1,10 +1,3 @@
-/*** countFields will return the number of continuously marked squares in a given grid ***/
-// Field = any set of continuously marked squares in grid
-// Input:
-// let sampleGrid = ['NNNNY', 'NYNNY', 'YYYNN', 'NYNNY', 'NNNYY'];
-// sampleGrid = sampleGrid.map(s => s.split(''));
-// Output: 3
-
 const countFields = (grid) => {
   // initialize fieldCounter
   let fieldCounter = 0;
