@@ -9,7 +9,6 @@ var twoSum = function(nums, target) {
   nums.forEach((num, i) => {
     let targetDiff = target - num;
     if (diffs[targetDiff] >= 0) {
-      console.log(JSON.stringify([diffs[targetDiff], i]));
       return [diffs[targetDiff], i];
     }
     diffs[num] = i;
