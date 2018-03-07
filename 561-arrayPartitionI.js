@@ -2,6 +2,7 @@
  * @param {number[]} nums
  * @return {number}
  */
+
 var arrayPairSum = function(nums) {
   if (nums.length % 2 !== 0) { return; }
   nums.sort(function(a, b) { return a - b; });
@@ -12,5 +13,3 @@ var arrayPairSum = function(nums) {
   });
 };
 
-
-console.log(arrayPairSum([1,4,3,2]));
