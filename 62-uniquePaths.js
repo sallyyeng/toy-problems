@@ -11,27 +11,48 @@
 
 // A Board class will be useful
 
-var makeBoard = function(m, n) {
-  var board = [];
-  for (var i = 0; i < m; i++) {
+const makeBoard = function(m, n) {
+  const board = [];
+  for (let i = 0; i < m; i++) {
     board.push([]);
-    for (var j = 0; j < n; j++) {
+    for (let j = 0; j < n; j++) {
       board[i].push(false);
     }
   }
-  board.togglePiece = function(i, j) {
-    this[i][j] = !this[i][j];
+
+  board.isAtEnd = function(i, j) {
+    // console.log(`i: ${m-1}`)
+    // console.log(`j: ${n-1}`)
+    return i === m - 1 && j === n - 1;
   };
-  board.hasBeenVisited = function(i, j) {
-    return !!this[i][j];
+
+  board.isOutOfBounds = function(i, j) {
+    // if row or column < 0 or > grid.length - 1 return true else false
+    return (i < 0 || j < 0 || i >= m || j >= n);
   };
+
   return board;
 };
 
-var robotPaths = function(n, board, i, j) {
+const uniquePaths = function(m, n) {
+  let paths = 0;
+  let board = makeBoard(m, n);
 
+  recurse = (i, j) => {
 
+    // base case: if step is the end, increment counter and reset to beginning
+    if (board.isAtEnd(i, j)) {
+      paths++;
+      return;
+    }
+
+    // base case: step is outOfBounds or hasBeenVisited
+    if (board.isOutOfBounds(i, j)) { return; }
+
+    // move r and d
+    recurse(i, j + 1);
+    recurse(i + 1, j);
+  };
+  recurse(0, 0);
+  return paths;
 };
-
-let board = makeBoard(3, 5);
-console.log((board));
