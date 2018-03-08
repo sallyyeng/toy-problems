@@ -45,11 +45,5 @@ const countFields = (grid) => {
 
     }
   }
-
-  // grid.forEach(array => {
-  //   console.log(JSON.stringify(array));
-  // });
-
-  // console.log(fieldCounter);
   return fieldCounter;
 };
