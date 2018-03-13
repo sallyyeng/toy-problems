@@ -32,23 +32,16 @@ const makeBoard = function(m, n) {
 
 const robotPaths = function(n, board = makeBoard(n, n), i = 0, j = 0) {
   if (board.isAtEnd(i, j)) { return 1; }
-  // if (board.isOutOfBounds(i, j) || board.hasBeenVisited(i, j)) { return 0; }
 
   board.togglePiece(i, j);
 
   let result = 0;
-  // result += robotPaths(n, board, i, j - 1);
+
   result += !board.isOutOfBounds(i, j - 1) && !board.hasBeenVisited(i, j - 1) ? robotPaths(n, board, i, j - 1) : null;
-  // result += robotPaths(n, board, i, j + 1);
   result += !board.isOutOfBounds(i, j + 1) && !board.hasBeenVisited(i, j + 1) ? robotPaths(n, board, i, j + 1) : null;
-  // result += robotPaths(n, board, i - 1, j);
   result += !board.isOutOfBounds(i - 1, j) && !board.hasBeenVisited(i - 1, j) ? robotPaths(n, board, i - 1, j) : null;
-  // result += robotPaths(n, board, i + 1, j);
   result += !board.isOutOfBounds(i + 1, j) && !board.hasBeenVisited(i + 1, j) ? robotPaths(n, board, i + 1, j) : null;
 
   board.togglePiece(i, j);
   return result;
 };
-
-// let testBoard = makeBoard(5);
-console.log(robotPaths(3)); // 8512
