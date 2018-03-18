@@ -10,19 +10,19 @@
  * @return {number[]}
  */
 
-const BinaryTreeNode = function(value) {
+const TreeNode = function(value) {
   this.value = value;
   this.left = null;
   this.right = null;
 };
 
-BinaryTreeNode.prototype.insertLeft = function(value) {
-  this.left = new BinaryTreeNode(value);
+TreeNode.prototype.insertLeft = function(value) {
+  this.left = new TreeNode(value);
   return this.left;
 };
 
-BinaryTreeNode.prototype.insertRight = function(value) {
-  this.right = new BinaryTreeNode(value);
+TreeNode.prototype.insertRight = function(value) {
+  this.right = new TreeNode(value);
   return this.right;
 };
 
