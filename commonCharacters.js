@@ -10,9 +10,9 @@ const commonCharacters = function(string1, ...args) {
     }
   }
 
-  otherStrings.forEach(otherString => {
+  otherStrings.forEach((otherString, index) => {
     for (let letter of otherString) {
-      if (commonCharsObj[letter] >= 0) { commonCharsObj[letter]++; }
+      if (commonCharsObj[letter] === index) { commonCharsObj[letter]++; }
     }
   });
 
@@ -22,3 +22,5 @@ const commonCharacters = function(string1, ...args) {
 
   return result;
 };
+
+commonCharacters('abc', 'abcc d', 'acd');
