@@ -3,15 +3,13 @@
 // space: O(1)
 
 const removeDuplicates = function(nums) {
-  let count = 0;
-  let pointer;
+  let pointerIndex = nums.length - 1;
 
   for (let i = nums.length - 1; i >= 0; i--) {
-    if (!pointer || pointer !== nums[i]) {
-      pointer = nums[i];
-      count++;
-      [nums[i], nums[nums.length - count]] = [nums[nums.length - count], nums[i]];
+    if (!nums[pointerIndex] || nums[pointerIndex] !== nums[i]) {
+      pointerIndex--;
+      nums[pointerIndex] = nums[i];
     }
   }
-  return nums.splice(count *= -1);
+  return nums.splice(pointerIndex);
 };
