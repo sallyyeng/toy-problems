@@ -1,5 +1,5 @@
 
-// time: O(n) + O(1) * m
+// time: O(n)
 // space: O(1)
 
 const removeDuplicates = function(nums) {
