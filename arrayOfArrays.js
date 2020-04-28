@@ -1,25 +1,31 @@
 const arrayOfArrays = inputArr => {
-  let results = [];
+  result = [];
 
-  const recurse = (i, currResult) => {
-    if (i === inputArr.length) {
-      results.push([...currResult]);
+  const recurse = (currResult, index) => {
+    if (currResult.length === inputArr.length) {
+      result.push([...currResult]);
       return;
     }
 
-    for (let element of inputArr[i]) {
-      currResult.push(element);
-      recurse(i + 1, currResult);
+    let currArray = inputArr[index];
+
+    currArray.forEach(el => {
+      currResult.push(el);
+      index += 1;
+
+      recurse(currResult, index);
 
       currResult.pop();
-    }
+      index -= 1;
+    });
   };
 
-  recurse(0, []);
+  recurse([], 0);
 
-  return results;
+  return result;
 };
 
-// console.log('=============== RESULT ==============')
-// const input = [[1,2], [3], [4,5]];
-// console.log(arrayOfArrays(input));
+console.log("=============== RESULT ==============");
+
+const input = [[1, 2], [3], [4, 5]];
+console.log("result: ", ...arrayOfArrays(input));
