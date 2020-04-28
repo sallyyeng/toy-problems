@@ -9,6 +9,11 @@ const arrayOfArrays = inputArr => {
 
     let currArray = inputArr[index];
 
+    // sometimes you return without hitting the base case
+    // and so everything that happens after the return
+    // needs to handle both base case + others
+    // i.e. only act in base case if you need to
+    // everything after return will be .pop or -=1
     currArray.forEach(el => {
       currResult.push(el);
       index += 1;
