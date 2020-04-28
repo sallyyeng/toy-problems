@@ -69,10 +69,6 @@ const ticketsB = [
   ["SFO", "SJC"],
   ["LHR", "SFO"]
 ]; // ["JFK", "MUC", "LHR", "SFO", "SJC"]
-const ticketsC = [
-  ["JFK", "KUL"],
-  ["JFK", "NRT"],
-  ["NRT", "JFK"]
-]; // ["JFK","NRT","JFK","KUL"]
+const ticketsC = [["JFK", "KUL"], ["JFK", "NRT"], ["NRT", "JFK"]]; // ["JFK","NRT","JFK","KUL"]
 
 console.log("ANSWERRRR: ", findItinerary(ticketsC));
