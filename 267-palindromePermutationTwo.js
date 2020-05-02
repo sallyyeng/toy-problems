@@ -86,8 +86,8 @@ var generatePalindromes = function(string) {
 };
 
 // const input = "abc";
-// const input = "aabbbcc";
-const input = "aaaabbbb";
+const input = "aabbbcc";
+// const input = "aaaabbbb";
 // const input = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
 const result = generatePalindromes(input);
