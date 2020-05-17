@@ -1,58 +1,60 @@
 /**
- *
- *  A robot located at the top left corner of a 5x5 grid is trying to reach the
- *  bottom right corner. The robot can move either up, down, left, or right,
- *  but cannot visit the same spot twice. How many possible unique paths are
- *  there to the bottom right corner?
- *
- *  make your solution work for a grid of any size.
- *
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
  */
+var uniquePaths = function(m, n) {
+  // make board
+  const initRow = new Array(n).fill(0);
+  const board = new Array(m).fill(initRow);
 
-// A Board class will be useful
+  // fill first row and first col with 1s
+  for (let row = 0; row < m; row++) {
+    board[row][0] = 1;
+  }
 
-const makeBoard = function(m, n) {
-  const board = [];
-  for (let i = 0; i < m; i++) {
-    board.push([]);
-    for (let j = 0; j < n; j++) {
-      board[i].push(false);
+  // for the remaining squares, calculate value
+  for (let col = 0; col < n; col++) {
+    board[0][col] = 1;
+  }
+
+  for (let row = 1; row < m; row++) {
+    for (let col = 1; col < n; col++) {
+      let leftSquareVal = board[row][col - 1];
+      let topSqaureVal = board[row - 1][col];
+
+      board[row][col] = leftSquareVal + topSqaureVal;
     }
   }
 
-  board.isAtEnd = function(i, j) {
-    // console.log(`i: ${m-1}`)
-    // console.log(`j: ${n-1}`)
-    return i === m - 1 && j === n - 1;
-  };
-
-  board.isOutOfBounds = function(i, j) {
-    // if row or column < 0 or > grid.length - 1 return true else false
-    return (i < 0 || j < 0 || i >= m || j >= n);
-  };
-
-  return board;
+  // return last square value
+  return board[m - 1][n - 1];
 };
 
-const uniquePaths = function(m, n) {
-  let paths = 0;
-  let board = makeBoard(m, n);
+console.log("result: ", uniquePaths(2, 2)); // 7
+// console.log("result: ", uniquePaths(7, 3)); // 28
+// console.log("result: ", uniquePaths(7, 4)); // 84
 
-  recurse = (i, j) => {
+// ******* BETTER SOLUTION ON THE BOTTOM ******* //
+// Really really fast solution that creates only one row
+// initiated with all 1s and instead of adding left + top
+// you add left + yourself because you only need reference
+// to top (i.e. yourself) for the adding and then
+// you can override yourself and become the "new" top for the next row
 
-    // base case: if step is the end, increment counter and reset to beginning
-    if (board.isAtEnd(i, j)) {
-      paths++;
-      return;
-    }
+// /**
+//  * @param {number} m
+//  * @param {number} n
+//  * @return {number}
+//  */
+// var uniquePaths = function(numRows, numCols) {
+//   let storage = new Array(numCols).fill(1);
 
-    // base case: step is outOfBounds or hasBeenVisited
-    if (board.isOutOfBounds(i, j)) { return; }
+//   for (let row = 1; row < numRows; row++) {
+//     for (let col = 1; col < numCols; col++) {
+//       storage[col] += storage[col - 1];
+//     }
+//   }
 
-    // move r and d
-    recurse(i, j + 1);
-    recurse(i + 1, j);
-  };
-  recurse(0, 0);
-  return paths;
-};
+//   return storage[numCols - 1];
+// };
