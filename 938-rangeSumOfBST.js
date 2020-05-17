@@ -1,11 +1,8 @@
-
-var rangeSumBST = function (root, L, R) {
-  const isWithinMinAndMax = (val) => {
-    return val >= L && val <= R
-  }
+var rangeSumBST = function(root, L, R) {
+  const isWithinMinAndMax = val => val >= L && val <= R;
   let result = 0;
 
-  const recurseHelper = (currNode) => {
+  const recurseHelper = currNode => {
     if (!currNode) return;
 
     let currVal = currNode.val;
@@ -13,7 +10,7 @@ var rangeSumBST = function (root, L, R) {
     let currRight = currNode.right;
 
     if (isWithinMinAndMax(currVal, L, R)) {
-      result += currVal
+      result += currVal;
       recurseHelper(currLeft);
       recurseHelper(currRight);
     } else {
@@ -24,13 +21,12 @@ var rangeSumBST = function (root, L, R) {
         recurseHelper(currLeft);
       }
     }
-  }
+  };
 
   recurseHelper(root);
 
   return result;
 };
-
 
 /**
  * Definition for a binary tree node.
@@ -47,25 +43,23 @@ var rangeSumBST = function (root, L, R) {
  * @return {number}
  */
 
-
-
 function TreeNode(val, left, right) {
-  this.val = (val === undefined ? 0 : val)
-  this.left = (left === undefined ? null : left)
-  this.right = (right === undefined ? null : right)
+  this.val = val === undefined ? 0 : val;
+  this.left = left === undefined ? null : left;
+  this.right = right === undefined ? null : right;
 }
 
-let nodeOne = new TreeNode(1, null, null);
-let nodeSix = new TreeNode(6, null, null);
+let fourthRowL1 = new TreeNode(1, null, null);
+let fourthRowL2 = new TreeNode(6, null, null);
 
-let thirdRowL1 = new TreeNode(3, nodeOne, null);
-let thirdRowL2 = new TreeNode(7, nodeSix, null);
+let thirdRowL1 = new TreeNode(3, fourthRowL1, null);
+let thirdRowL2 = new TreeNode(7, fourthRowL2, null);
 let thirdRowL3 = new TreeNode(13, null, null);
 let thirdRowL4 = new TreeNode(18, null, null);
 
-let secondRowL1 = new TreeNode(5, thirdRowL1, thirdRowL2)
-let secondRowL2 = new TreeNode(15, thirdRowL3, thirdRowL4)
+let secondRowL1 = new TreeNode(5, thirdRowL1, thirdRowL2);
+let secondRowL2 = new TreeNode(15, thirdRowL3, thirdRowL4);
 
 let inputHead = new TreeNode(10, secondRowL1, secondRowL2);
 
-console.log('result: ', rangeSumBST(inputHead, 6, 10));
+console.log("result: ", rangeSumBST(inputHead, 6, 10));
